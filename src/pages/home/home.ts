@@ -53,4 +53,12 @@ export class HomePage {
   borrar_animal(i:number){
     this.animales.splice(i,1);
   }
+
+  doRefresh(refresher) {
+    setTimeout(() => {
+      this.animales = ANIMALES.slice(0);
+      refresher.complete();
+    }, 2000);
+  }
+
 }

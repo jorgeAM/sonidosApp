@@ -17,6 +17,17 @@ export class HomePage {
   }
 
   reproducir(animal:Animal){
-  	console.log(animal);
+    //propia de html5
+    let audio = new Audio();
+    //url
+    audio.src = animal.audio;
+    //cargar
+    audio.load();
+    //iniciar sonido
+    audio.play();
+    //reproduciendo
+    animal.reproduciendo = true;
+    //funcion propia de javascript
+   setTimeout(()=>animal.reproduciendo=false, animal.duracion*1000);
   }
 }

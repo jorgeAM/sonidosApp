@@ -10,6 +10,9 @@ import { Animal } from '../../interfaces/animal.interface';
 })
 export class HomePage {
 	animales:Animal[] = [];
+  //propia de html5
+  audio = new Audio();
+  audioTiempo:any;
 
   constructor(public navCtrl: NavController) {
   	//crea clon de ANIMALEs
@@ -17,17 +20,33 @@ export class HomePage {
   }
 
   reproducir(animal:Animal){
-    //propia de html5
-    let audio = new Audio();
+    this.pausar_audio(animal);
+    if(animal.reproduciendo){
+      animal.reproduciendo = false;
+      //salir de la funcion
+      return;
+    }
     //url
-    audio.src = animal.audio;
+    this.audio.src = animal.audio;
     //cargar
-    audio.load();
+    this.audio.load();
     //iniciar sonido
-    audio.play();
+    this.audio.play();
     //reproduciendo
     animal.reproduciendo = true;
     //funcion propia de javascript
-   setTimeout(()=>animal.reproduciendo=false, animal.duracion*1000);
+    this.audioTiempo = setTimeout(()=>animal.reproduciendo=false, animal.duracion*1000);
+  }
+
+  private pausar_audio(aninalSel:Animal){
+    clearTimeout(this.audioTiempo);
+    //pausar cancion
+    this.audio.pause();
+    //para que se ponga al inicio de la cancion
+    this.audio.currentTime = 0;
+    for(let animal of this.animales){
+      if(animal.nombre != aninalSel.nombre)
+        animal.reproduciendo = false;
+    }
   }
 }

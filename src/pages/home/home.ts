@@ -16,4 +16,7 @@ export class HomePage {
   	this.animales = ANIMALES.slice(0);
   }
 
+  reproducir(animal:Animal){
+  	console.log(animal);
+  }
 }

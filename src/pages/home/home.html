@@ -8,13 +8,13 @@
 
 <ion-content>
 
-	<ion-list *ngFor="let animal of animales">
-	  <ion-item>
+	<ion-list>
+	  <button ion-item *ngFor="let animal of animales" (click)="reproducir(animal)">
 	    <ion-avatar item-left>
 	      <img src="{{animal.imagen}}">
 	    </ion-avatar>
-	    <h2>{{animal.nombre}}</h2>
-	  </ion-item>
+	    <h2 >{{animal.nombre}}</h2>
+	  </button>
 	</ion-list>
 
 </ion-content>

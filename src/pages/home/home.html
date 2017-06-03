@@ -6,5 +6,15 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content>
+
+	<ion-list *ngFor="let animal of animales">
+	  <ion-item>
+	    <ion-avatar item-left>
+	      <img src="{{animal.imagen}}">
+	    </ion-avatar>
+	    <h2>{{animal.nombre}}</h2>
+	  </ion-item>
+	</ion-list>
+
 </ion-content>

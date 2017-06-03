@@ -23,7 +23,7 @@ export class HomePage {
     this.pausar_audio(animal);
     if(animal.reproduciendo){
       animal.reproduciendo = false;
-      //salir de la funcion
+      //salir de la funcion reproducir
       return;
     }
     //url
@@ -48,5 +48,9 @@ export class HomePage {
       if(animal.nombre != aninalSel.nombre)
         animal.reproduciendo = false;
     }
+  }
+
+  borrar_animal(i:number){
+    this.animales.splice(i,1);
   }
 }

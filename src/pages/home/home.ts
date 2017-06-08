@@ -4,6 +4,9 @@ import { NavController } from 'ionic-angular';
 import { ANIMALES } from '../../data/data.animales';
 //exportamos interface
 import { Animal } from '../../interfaces/animal.interface';
+//api de itemReorder
+import { Refresher, reorderArray } from 'ionic-angular';
+
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -13,6 +16,7 @@ export class HomePage {
   //propia de html5
   audio = new Audio();
   audioTiempo:any;
+  ordenando:boolean = false;
 
   constructor(public navCtrl: NavController) {
   	//crea clon de ANIMALEs
@@ -54,11 +58,24 @@ export class HomePage {
     this.animales.splice(i,1);
   }
 
-  doRefresh(refresher) {
+  doRefresh(refresher:Refresher) {
     setTimeout(() => {
       this.animales = ANIMALES.slice(0);
       refresher.complete();
     }, 2000);
+  }
+
+  reorderItems(indexes){
+    this.animales = reorderArray(this.animales, indexes);
+  }
+
+  ordenar(){
+    if (this.ordenando){
+      this.ordenando = false;
+    }
+    else{
+      this.ordenando = true;
+    }
   }
 
 }

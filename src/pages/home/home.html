@@ -3,6 +3,12 @@
     <ion-title>
       SonidosApp
     </ion-title>
+    <ion-buttons end>
+      <button ion-button (click)="ordenar()">
+        Ordenar
+      </button>
+    </ion-buttons>
+
   </ion-navbar>
 </ion-header>
 
@@ -17,7 +23,7 @@
     	</ion-refresher-content>
   </ion-refresher>
 
-	<ion-list reorder="true">
+	<ion-list [reorder]="ordenando" (ionItemReorder)="reorderItems($event)">
 		<ion-item-sliding *ngFor="let animal of animales; let i = index ">
 		  <button ion-item (click)="reproducir(animal)">
 		    <ion-avatar item-left>
